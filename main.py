@@ -38,7 +38,7 @@ def read_current_user():
 
 @app.get("/qr/{web}")
 async def generateQr(web):
-    s = web
+    s = web.replace('"', '')
     url = pyqrcode.create(s)
     url.png("{}.png".format("generated"), scale = 6)
     return FileResponse("{}.png".format("generated"))
